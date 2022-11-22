@@ -1,13 +1,13 @@
 <?php
 
-    // $nom = "Ronaldo";
-    // $nom = "Messi";
+    $password = password_hash("1234", PASSWORD_BCRYPT);
 
-    // echo $nom;
+    var_dump($password);
 
 
-    define("PI", 3.14);
-    echo PI;
 
-    const SALUTATION = "Hello";
-    const SALUTATION = "Ciao";
+    $data = "azerty1234A*";
+
+    $alphabet = ["a", "b", "c"];
+
+    // $match = 
