@@ -1,1 +1,3 @@
 - Les grandes étapes à suivre pour ce projet
+
+- Session security (change httponly and samesite values)

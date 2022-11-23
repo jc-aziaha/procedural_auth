@@ -56,10 +56,27 @@ require ABSTRACT_CONTROLLER;
                 return redirect_back();
             }
 
+            session_regenerate_id();
+
             $_SESSION['auth'] = $user;
 
             return redirect_to_url("/");
         }
 
         return render("pages/visitor/authentication/login.html.php");
+    }
+
+
+    /**
+     * Cette fonction permet de déconnecter l'utilisateur
+     *
+     * @return string
+     */
+    function logout() : string
+    {
+        session_destroy();
+        unset($_SESSION);
+        $_SESSION = [];
+
+        return redirect_to_url("/login");
     }
