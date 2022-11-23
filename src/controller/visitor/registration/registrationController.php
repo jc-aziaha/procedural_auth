@@ -64,10 +64,18 @@ require ABSTRACT_CONTROLLER;
 
             if ( count($errors) > 0 ) 
             {
-                return header("Location: " . $_SERVER['HTTP_REFERER']);
+                $_SESSION['errors'] = $errors;
+                $_SESSION['old']    = old_values($_POST);
+                return redirect_back();
             }
 
-            dd('cool');
+            // Appel du manager de la table "user" 
+            require USER;
+
+            $post_clean = old_values($_POST);
+            createUser($post_clean);
+
+            return redirect_to_url("/login");
         }
 
         return render("pages/visitor/registration/register.html.php");
