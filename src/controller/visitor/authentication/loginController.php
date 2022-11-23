@@ -60,7 +60,7 @@ require ABSTRACT_CONTROLLER;
 
             $_SESSION['auth'] = $user;
 
-            return redirect_to_url("/");
+            return redirect_to_url("/admin/home");
         }
 
         return render("pages/visitor/authentication/login.html.php");

@@ -1,6 +1,6 @@
 <?php
     /* Connexion à une base avec l'invocation de pilote */
-    $dsn_db = 'mysql:dbname=dwwm8b_auth;host=127.0.0.1';
+    $dsn_db = 'mysql:dbname=dwwm8b_auth_admin;host=127.0.0.1';
     $user_db = 'root';
     $password_db = '';
 

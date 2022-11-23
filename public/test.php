@@ -1,13 +1,12 @@
 <?php
 
-    $password = password_hash("1234", PASSWORD_BCRYPT);
+    $tab = [
+        "nom" => "AZIAHA",
+        "prenom" => "jc",
+        "email" => "jc@gmail.com"
+    ];
 
-    var_dump($password);
+    extract($tab);
 
+    echo $hello;
 
-
-    $data = "azerty1234A*";
-
-    $alphabet = ["a", "b", "c"];
-
-    // $match = 
