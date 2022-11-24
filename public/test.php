@@ -1,12 +1,6 @@
 <?php
 
-    $tab = [
-        "nom" => "AZIAHA",
-        "prenom" => "jc",
-        "email" => "jc@gmail.com"
-    ];
+    $request_uri = $_SERVER['REQUEST_URI'];
 
-    extract($tab);
-
-    echo $hello;
+    echo $request_uri;
 

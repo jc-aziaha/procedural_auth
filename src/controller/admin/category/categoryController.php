@@ -22,7 +22,8 @@ require ABSTRACT_CONTROLLER;
 
 
     /**
-     * Cette méthode permet d'afficher le ofrmulaire de création d'une nouvelle catégorie
+     * Cette méthode permet d'afficher le formulaire de création d'une nouvelle catégorie
+     * et de traiter ce formulaire
      *
      * @return string
      */
@@ -62,4 +63,81 @@ require ABSTRACT_CONTROLLER;
         }
 
         return render("pages/admin/category/create.html.php");
+    }
+
+
+    /**
+     * Cette méthode permet d'afficher le formulaire de modification d'une catégorie
+     * et de traiter ce formulaire
+     *
+     * @param array $params
+     * @return string
+     */
+    function edit(array $params) : string
+    {
+        $id = (int) strip_tags($params[0]);
+        
+        require CATEGORY;
+        $category = findCategoryById($id);
+
+        if ( ! $category ) 
+        {
+            return redirect_to_url("/admin/category/list");
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            require VALIDATOR;
+            $errors = make_validation(
+                $_POST,
+                [
+                    "name" => ["required", "string", "max::255", "uniqueOnUpdate::category,name," . $category['id'] ]
+                ],
+                [
+                    "name.required"         => "Le nom est obligatoire.",
+                    "name.string"           => "Veuillez entrer une chaîne de caractères.",
+                    "name.max"              => "Veuillez entrer au maxim 255 caractères",
+                    "name.uniqueOnUpdate"   => "Cette catégorie existe déjà. Veuillez en choisir une autre."
+                ],
+            );
+
+            if (count($errors) > 0) 
+            {
+                $_SESSION['errors'] = $errors;
+                $_SESSION['old']    = old_values($_POST);
+                return redirect_back();
+            }
+
+            updatedCategory(old_values($_POST), $category['id']);
+
+            return redirect_to_url("/admin/category/list");
+        }
+
+        return render("pages/admin/category/edit.html.php", [
+            "category" => $category
+        ]);
+    }
+
+    /**
+     * Cette fonction permet de supprimer une catégorie de la table "category"
+     *
+     * @param array $params
+     * 
+     * @return string
+     */
+    function delete(array $params) : string
+    {
+        $id = (int) strip_tags($params[0]);
+
+        require CATEGORY;
+        $category = findCategoryById($id);
+
+        if ( ! $category) 
+        {
+            return redirect_to_url("/admin/category/list");
+        }
+
+        deleteCategory($category['id']);
+
+        return redirect_to_url("/admin/category/list");
     }

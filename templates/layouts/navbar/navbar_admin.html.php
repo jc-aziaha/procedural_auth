@@ -16,6 +16,9 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="/admin/profile/edit">Modifier mon profil</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/">Retour au site</a>
                 </li>
                 <li class="nav-item">

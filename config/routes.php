@@ -12,9 +12,15 @@
 
 
     /* -------------------------Admin-------------------- */
-    get("/admin/home",               ["admin/home/homeController", "index"]);
-    get("/admin/category/list",      ["admin/category/categoryController", "index"]);
-    get("/admin/category/create",    ["admin/category/categoryController", "create"]);
-    post("/admin/category/create",   ["admin/category/categoryController", "create"]);
+    get("/admin/home",                  ["admin/home/homeController", "index"]);
+    get("/admin/category/list",         ["admin/category/categoryController", "index"]);
+    get("/admin/category/create",       ["admin/category/categoryController", "create"]);
+    post("/admin/category/create",      ["admin/category/categoryController", "create"]);
+    get("/admin/category/edit/{id}",    ["admin/category/categoryController", "edit"]);
+    post("/admin/category/edit/{id}",   ["admin/category/categoryController", "edit"]);
+    get("/admin/category/delete/{id}",  ["admin/category/categoryController", "delete"]);
+
+    get("/admin/profile/edit",          ["admin/profile/profileController", "edit"]);
+    post("/admin/profile/edit",          ["admin/profile/profileController", "edit"]);
 
     
